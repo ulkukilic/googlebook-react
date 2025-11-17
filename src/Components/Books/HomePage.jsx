@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 
-export default function HomePage() {
+export default function HomePage({ books}) {
     // https://stackoverflow.com/questions/78352966/react-js-api-calls-using-axios
-    const api = 'https://www.googleapis.com/books/v1/volumes?q=';
-    const [books, setBooks] = useState([]); // gelen veriler apiden burda tutulacak
+    // const api = 'https://www.googleapis.com/books/v1/volumes?q=';
+    // const [books, setBooks] = useState([]); // gelen veriler apiden burda tutulacak
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                console.log("Sayfa yuklendi ve useEffect calisti");
-                const response = await fetch(api + 'Pride and Prejudice'); // fetch ile api cagrisi yapiliyor
-                const data = await response.json();
-                console.log(data);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         try {
+    //             console.log("Sayfa yuklendi ve useEffect calisti");
+    //             // const response = await fetch(api + 'Pride and Prejudice'); // fetch ile api cagrisi yapiliyor
+    //             const response = await fetch(api + searchQuery);
+    //             const data = await response.json();
+    //             console.log(data);
 
-                setBooks(data.items || []); // data icerisindeki veriler books state'ine atiliyor
-            } catch (error) {
-                console.error("Error: ", error);
-            }
-        }
-        fetchData();
-    }, []);
+    //             setBooks(data.items || []); // data icerisindeki veriler books state'ine atiliyor
+    //         } catch (error) {
+    //             console.error("Error: ", error);
+    //         }
+    //     }
+    //     fetchData();
+    // }, [searchQuery]); // searchQuery degistiginde useEffect tekrar  calismasi icin
  // https://jsonformatter.org/
     //    "volumeInfo": {
     //     "title": "Barbie - Gwiezdna przygoda",
@@ -56,7 +57,7 @@ export default function HomePage() {
                             </h5>
                             {book.volumeInfo.authors && (
                                 <p className="card-text">
-                                    {book.volumeInfo.authors || 'There is no author'}
+                                    {book.volumeInfo.authors|| 'There is no author'}
                                 </p>
                             )}
                         </div>
